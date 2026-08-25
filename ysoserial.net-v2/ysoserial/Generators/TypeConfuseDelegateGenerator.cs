@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -31,6 +31,10 @@ namespace ysoserial_frmv2.Generators
         /* this can be used easily by the plugins as well */
         public object TypeConfuseDelegateGadget(string cmd)
         {
+            if (cmd != null && cmd.Contains(".."))
+            {
+                throw new ArgumentException("Invalid file path");
+            }
             if (File.Exists(cmd))
             {
                 Console.Error.WriteLine("Reading command from file " + cmd + " ...");
